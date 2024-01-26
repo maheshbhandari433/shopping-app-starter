@@ -1,8 +1,15 @@
 import { Button, Card } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 
 const ProductSingle = (props) => {
   const { title, price, description, image, rating } = props;
   const product = props;
+  const dispatch = useDispatch();
+
+  //   const handleAddToCart = () => {
+  //     dispatch(addToCart(product));
+  //   };
 
   return (
     <Card style={{ width: "18rem", padding: "1rem" }}>
@@ -16,7 +23,9 @@ const ProductSingle = (props) => {
           <br />
           {description}
         </Card.Text>
-        <Button variant="primary">Add Product to Cart</Button>
+        <Button variant="primary" onClick={() => dispatch(addToCart(product))}>
+          Add Product to Cart
+        </Button>
       </Card.Body>
     </Card>
   );

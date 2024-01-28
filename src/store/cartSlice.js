@@ -10,15 +10,18 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.cart = [...state.cart, action.payload];
     },
-    // Imagine the above as a function:
-    // Imagine it looks like:
-    // const addToCart = (state, action) => {
-    // setCart([...cart, action.payload]);
-    // };
+    removeFromCart: (state, action) => {
+      const product = action.payload;
+      // remove product from cart if it exists
+      const index = state.cart.findIndex((item) => item.id === product.id);
+      if (index !== -1) {
+        state.cart.splice(index, 1);
+      }
+    },
   },
 });
 
 // This should be used for reducers NOT extraReducers
-export const { addToCart } = cartSlice.actions;
+export const { removeFromCart, addToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

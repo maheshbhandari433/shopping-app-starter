@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../store/productSlice";
 import ProductSingle from "./ProductSingle";
@@ -22,11 +23,19 @@ const Products = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        padding: "1rem",
+      }}
+    >
       {products.map((product) => (
         <ProductSingle key={product.id} {...product} />
       ))}
-    </div>
+    </Container>
   );
 };
 

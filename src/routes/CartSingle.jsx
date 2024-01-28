@@ -1,8 +1,8 @@
 import { Button, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import { removeFromCart } from "../store/cartSlice";
 
-const ProductSingle = (props) => {
+const CartSingle = (props) => {
   const { title, price, description, image, rating } = props;
   const product = props;
   const dispatch = useDispatch();
@@ -40,16 +40,19 @@ const ProductSingle = (props) => {
         <Card.Text>
           Price: ${price}
           <br />
-          Rating: {rating.rate}
+          Rating: {rating?.rate}
           <br />
           {description}
         </Card.Text>
-        <Button variant="primary" onClick={() => dispatch(addToCart(product))}>
-          Add Product to Cart
+        <Button
+          variant="primary"
+          onClick={() => dispatch(removeFromCart(product))}
+        >
+          Remove Product
         </Button>
       </Card.Body>
     </Card>
   );
 };
 
-export default ProductSingle;
+export default CartSingle;

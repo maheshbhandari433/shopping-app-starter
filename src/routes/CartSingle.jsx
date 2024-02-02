@@ -43,12 +43,20 @@ const CartSingle = (props) => {
           Rating: {rating?.rate}
           <br />
           {description}
+          <br />
+          Quantity in cart: {(product && product?.quantity) ?? 0}
         </Card.Text>
         <Button
           variant="primary"
           onClick={() => dispatch(removeFromCart(product))}
         >
           Remove Product
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => dispatch(removeFromCart(product))} // TODO: Refactor this to match the slice action
+        >
+          Decrease Quantity by 1
         </Button>
       </Card.Body>
     </Card>
